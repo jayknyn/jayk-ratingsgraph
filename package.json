@@ -1,17 +1,35 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "jk-ratings-graph",
+  "version": "1.0.0",
+  "description": "FEC Axe Center Ratings Graph",
+  "author": "Jay Kannaiyan",
+  "license": "Unlicensed",
   "engines": {
-    "node": ">=6.13.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
+    "start": "nodemon ./server/server.js",
+    "build": "webpack --watch -d"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "path": "^0.12.7",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "nodemon": "^1.18.10",
+    "mongoose": "^4.9.6",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "chai": "^3.5.0",
+    "mocha": "2.3.3",
+    "sinon": "1.17.3"
   }
 }
