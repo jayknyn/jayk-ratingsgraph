@@ -1,51 +1,51 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/graph');
+mongoose.connect('mongodb://localhost:27017/graph');
 
 const graphSchema = mongoose.Schema({
-  id: Number,
   username: String,
   body: String,
   score: Number,
-  pros: {
+  proscons: {
     reliability: Boolean,
     durability: Boolean,
     looks: Boolean,
-    performance: Boolean
-  },
-  cons: {
-    reliability: Boolean,
-    durability: Boolean,
-    looks: Boolean,
-    performance: Boolean
+    performance: Boolean,
+    value: Boolean
   },
   likes: Number,
   dislikes: Number,
   productId: Number
 });
 
-let Repo = mongoose.model('Repo', graphSchema);
+const Graph = mongoose.model('Graph', graphSchema);
 
-let save = (repoData) => {
-  let newInstance = new Repo(repoData);
-  newInstance.save((err, success) => {
-    if (err) {
-      console.log('db: save error');
-    }
-    else console.log('db: save success');
-  })
+const postReview = (data, cb) => {
+  // console.log('data in postReview:', data)
+    const newReview = new Graph(data);
+    newReview.save((err, success) => {
+      if (err) {
+        console.log('db: save error');
+        cb(err, null);
+      }
+      else {
+        console.log('db: save success');
+        cb(null, success);
+      }
+    });
+
 }
 
-let find = (cb) => {
-  Repo.find({})
-    .sort('-stargazers_count')
-    .limit(10)
+const getReviewsById = (selectedId, cb) => {
+  Graph.find({productId: selectedId})
     .exec((err, results) => {
-      if (err) console.log('db: find error')
-      else {
-        console.log('db: find success, results[0]:', results[0].owner);
+      if (err) {
+        console.log('db: find error');
+        cb(err, null);
+      } else {
+        console.log('db: find success, results:', results);
         cb(null, results);
       }
-    })
+    });
 }
 
-module.exports = {save, find}
+module.exports = {postReview, getReviewsById}
