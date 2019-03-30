@@ -10,6 +10,8 @@
   "scripts": {
     "start": "nodemon ./server/server.js",
     "build": "webpack --watch -d",
+    "restart": "pm2 startOrRestart ecosystem.config.js",
+    "deploy": "pm2 deploy ecosystem.config.js production",
     "data": "node ./db/populate.js"
   },
   "dependencies": {
@@ -36,6 +38,7 @@
     "babel-loader": "^8.0.5",
     "chai": "^3.5.0",
     "mocha": "2.3.3",
+    "pm2": "^3.4.1",
     "sinon": "1.17.3"
   }
 }
