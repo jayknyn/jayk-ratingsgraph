@@ -6,7 +6,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: 'ec2-3-17-39-193.us-east-2.compute.amazonaws.com',
+      host: 'ec2-3-19-31-226.us-east-2.compute.amazonaws.com',
       key: '~/.ssh/jayhr.pem',
       ref: 'origin/master',
       repo: 'https://github.com/axe-center/jayk-ratingsgraph.git',
