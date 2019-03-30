@@ -19,6 +19,7 @@
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
     "express": "^4.16.3",
     "file-system": "^2.2.2",
     "mongoose": "^4.9.6",
@@ -27,6 +28,7 @@
     "prop-types": "^15.7.2",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
+    "react-star-ratings": "^2.3.0",
     "victory": "^32.1.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"

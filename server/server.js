@@ -10,18 +10,18 @@ app.listen(port, (err, success) => {
   else console.log(`Server running on port: ${port}`)
 })
 
-// app.post('/api/reviews', (req, res) => {
-//   console.log('app.post started');
-//   for (let x = 0; x < req.body.length; x++) {
-//     // console.log('req.body[x]:', req.body[x]);
-//     db.postReview(req.body[x], (err, success) => {
-//       if (err) {
-//         console.log('Server: db postReview error')
-//         res.end();
-//       } else {
-//         console.log('Server: db postReview success');
-//       }
-//     });
-//   }
-//   res.send('success');
-// });
+app.post('/api/reviews', (req, res) => {
+  console.log('app.post started');
+  for (let x = 0; x < req.body.length; x++) {
+    // console.log('req.body[x]:', req.body[x]);
+    db.postReview(req.body[x], (err, success) => {
+      if (err) {
+        console.log('Server: db postReview error')
+        res.end();
+      } else {
+        console.log('Server: db postReview success');
+      }
+    });
+  }
+  res.send('success');
+});
