@@ -34,6 +34,7 @@ function CenteredGrid(props) {
         <Grid item xs={4}>
           {/* <Graph /> */}
           <Paper className={classes.paper}>
+            <h5>Ratings Summary</h5>
             <Graph />
           </Paper>
         </Grid>

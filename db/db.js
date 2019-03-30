@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/graph');
+require('dotenv').config();
+mongoose.connect(`mongodb+srv://dbjay:${process.env.MONGOPW}@jayaxe-uogon.mongodb.net/graph?retryWrites=true`);
 
 const graphSchema = mongoose.Schema({
   username: String,
