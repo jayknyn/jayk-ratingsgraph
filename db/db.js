@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-mongoose.connect(`mongodb+srv://dbjay:${process.env.MONGOPW}@jayaxe-uogon.mongodb.net/graph?retryWrites=true`);
+console.log('before mongo connect')
+// const uri = `mongodb+srv://dbjay:${process.env.MONGOPW}@jayaxe-uogon.mongodb.net/graph2?retryWrites=true`;
+mongoose.connect(`mongodb+srv://dbjay:${process.env.MONGOPW}@jayaxe-uogon.mongodb.net/graph2?retryWrites=true`, {useNewUrlParser: true}, (err, success) => {
+// mongoose.connect(uri, {useNewUrlParser: true}, (err, success) => {
+  if (err) {
+    console.log('db connect error')
+    throw err
+  } else {
+    console.log('db connect success')
+  }
+});
 
 const graphSchema = mongoose.Schema({
   username: String,
