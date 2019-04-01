@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('../db/db.js');
+// const db = require('../db/db.js');
 const port = process.env.port || 4000;
 const app = express();
 app.use(express.static('dist'));
@@ -24,4 +24,18 @@ app.post('/api/reviews', (req, res) => {
       }
     });
   }
+});
+
+app.post('/api/getreviews', (req, res) => {
+  console.log('route getreviews started');
+  console.log('req.body.productId:', req.body.productId);
+  db.getReviewsById(req.body.productId, (err, success) => {
+    if (err) {
+      console.log('Server: db getReview error')
+      res.end();
+    } else {
+      console.log('Server: db getReview success');
+      res.status(201).send(success);
+    }
+  });
 });
