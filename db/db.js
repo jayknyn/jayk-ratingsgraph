@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 console.log('before mongo connect')
-// const uri = `mongodb+srv://dbjay:${process.env.MONGOPW}@jayaxe-uogon.mongodb.net/graph2?retryWrites=true`;
-mongoose.connect(`mongodb+srv://dbjay:${process.env.MONGOPW}@jayaxe-uogon.mongodb.net/graph2?retryWrites=true`, {useNewUrlParser: true}, (err, success) => {
-// mongoose.connect(uri, {useNewUrlParser: true}, (err, success) => {
+// mongoose.connect(`mongodb+srv://dbjay:${process.env.MONGOPW}@jayaxe-uogon.mongodb.net/graph2?retryWrites=true`, {useNewUrlParser: true}, (err, success) => {
+const uri = `mongodb+srv://dbjay:${process.env.MONGOPW}@jayaxe-uogon.mongodb.net/Graph?retryWrites=true`;
+mongoose.connect(uri, {useNewUrlParser: true}, (err, success) => {
   if (err) {
     console.log('db connect error')
     throw err
@@ -53,7 +53,7 @@ const getReviewsById = (selectedId, cb) => {
         console.log('db: find error');
         cb(err, null);
       } else {
-        console.log('db: find success, results:', results);
+        console.log('db: find success');
         cb(null, results);
       }
     });
