@@ -1,6 +1,5 @@
 import React from 'react';
 import CenteredGrid from './Grid.js';
-import AppBar from '@material-ui/core/AppBar';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -11,8 +10,8 @@ class App extends React.Component {
       reviews: [[], [], [], [], []],
       ratingAverage: 3,
       ratings: [1, 2, 3, 4, 5],
-      pros: [2, 2, 5, 4, 1],
-      cons: [4, 3, 1, 5, 2]
+      pros: [2, 3, 5, 4, 1],
+      cons: [-3, -2, 0, -1, -4]
     }
   }
 
@@ -46,27 +45,27 @@ class App extends React.Component {
           if (review.proscons.value === true) {
             newPros[0]++
           } else {
-            newCons[0]++
+            newCons[0]--
           }
           if (review.proscons.reliability === true) {
             newPros[1]++
           } else {
-            newCons[1]++
+            newCons[1]--
           }
           if (review.proscons.performance === true) {
             newPros[2]++
           } else {
-            newCons[2]++
+            newCons[2]--
           }
           if (review.proscons.looks === true) {
             newPros[3]++
           } else {
-            newCons[3]++
+            newCons[3]--
           }
           if (review.proscons.durability === true) {
             newPros[4]++
           } else {
-            newCons[4]++
+            newCons[4]--
           }
         }
 
@@ -104,7 +103,6 @@ class App extends React.Component {
           pros={this.state.pros} 
           cons={this.state.cons}
         />
-        
       </div>
     )
   }

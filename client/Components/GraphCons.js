@@ -1,5 +1,6 @@
 import React from 'react';
 import {VictoryBar, VictoryChart, VictoryAxis, VictoryTheme} from 'victory';
+import StarRatings from 'react-star-ratings';
 import Typography from '@material-ui/core/Typography';
 
 const GraphCons = (props) => {
@@ -14,28 +15,29 @@ const GraphCons = (props) => {
 
   return (
     <div>
-
+      <StarRatings
+        rating={props.ratingAverage}
+        starRatedColor="orange"
+        numberOfStars={0}
+        starDimension="20px"
+        starSpacing="5px"
+      />
       <Typography variant="subtitle1">
          Based on customer reviews
-      </Typography>
-      <Typography variant="subtitle2">
-         
       </Typography>
 
       <VictoryChart
         theme={VictoryTheme.material}
         domainPadding={10} // padding from the axis
         style={{tickLabels: {fontFamily: "'Fira Sans', sans-serif", fontSize: 20}}}
-        padding={{ top: 20, bottom: 5, left: 85, right: 20 }}
+        padding={{ top: 20, bottom: 5, left: 20, right: 85 }}
         height={150}
-
       >
         <VictoryAxis
           tickFormat={["Value", "Reliability", "Performance", "Design", "Durability"]}
           style={{ 
             tickLabels: { fontSize: 12, fill: '#808080', fontFamily: "'Fira Sans', sans-serif" }
           }}
-          
         />
         <VictoryBar horizontal
           data={data}
@@ -47,13 +49,12 @@ const GraphCons = (props) => {
           }}
           style={{
             data: {fill: "#a00000", width: 20},
-            tickLabels: {color: "red"}
+            tickLabels: {color: "red"},
+            labels: {fill: "#bbb"}
           }}
           alignment="middle"
-          //barWidth={30}
           cornerRadius={{ top: 5}}
-          //labels={data}
-          
+          labels={(data) => (data.ratings).toFixed(0)}
         />
       </VictoryChart>
     </div>

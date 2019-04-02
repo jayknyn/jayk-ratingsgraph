@@ -23,10 +23,7 @@ const Graph = (props) => {
         starSpacing="5px"
       />
       <Typography variant="subtitle1">
-        Avg. Rating: {props.ratingAverage}
-      </Typography>
-      <Typography variant="subtitle2">
-        Total Reviews: {props.reviews.length}
+        Avg. Rating: {props.ratingAverage} | Total Reviews: {props.reviews.length}
       </Typography>
 
       <VictoryChart
@@ -35,15 +32,12 @@ const Graph = (props) => {
         style={{tickLabels: {fontFamily: "'Fira Sans', sans-serif", fontSize: 20}}}
         padding={{ top: 20, bottom: 5, left: 60, right: 20 }}
         height={150}
-
       >
         <VictoryAxis
-          //tickValues={[1, 2, 3, 4, 5]}
           tickFormat={["1 Star", "2 Stars", "3 Stars", "4 Stars", "5 Stars"]}
           style={{ 
             tickLabels: { fontSize: 12, fill: '#808080', fontFamily: "'Fira Sans', sans-serif" }
           }}
-          
         />
         <VictoryBar horizontal
           data={data}
@@ -55,13 +49,12 @@ const Graph = (props) => {
           }}
           style={{
             data: {fill: "#a00000", width: 20},
-            tickLabels: {color: "red"}
+            tickLabels: {color: "red"},
+            labels: {fill: "#bbb"}
           }}
           alignment="middle"
-          //barWidth={30}
           cornerRadius={{ top: 5}}
-          //labels={data}
-          
+          labels={(data) => (data.ratings).toFixed(0) }
         />
       </VictoryChart>
     </div>
