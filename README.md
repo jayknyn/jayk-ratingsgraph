@@ -35,3 +35,8 @@ From within the root directory:
 ```sh
 npm install
 ```
+
+## Style Guide
+
+Refer to the [AirBnb Style Guide](https://github.com/airbnb/javascript).
+

@@ -1,6 +1,5 @@
 import React from 'react';
 import CenteredGrid from './Grid.js';
-// import CheckboxList from './List.js';
 import AppBar from '@material-ui/core/AppBar';
 import axios from 'axios';
 
@@ -9,9 +8,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: 1,
-      reviews: [],
+      reviews: [[], [], [], [], []],
       ratingAverage: 3,
-      ratings: [1, 2, 3, 4, 5]
+      ratings: [1, 2, 3, 4, 5],
+      pros: [2, 2, 5, 4, 1],
+      cons: [4, 3, 1, 5, 2]
     }
   }
 
@@ -26,6 +27,8 @@ class App extends React.Component {
         console.log('axios getreviews success, res.data', res.data)
         const reviews = res.data;
         const newRatings = [0, 0, 0, 0, 0];
+        const newPros = [0, 0, 0, 0, 0];
+        const newCons = [0, 0, 0, 0, 0];
         for (let review of reviews) {
           if (review.score === 1) {
             newRatings[0]++
@@ -39,13 +42,47 @@ class App extends React.Component {
             newRatings[4]++
           }
         }
+        for (let review of reviews) {
+          if (review.proscons.value === true) {
+            newPros[0]++
+          } else {
+            newCons[0]++
+          }
+          if (review.proscons.reliability === true) {
+            newPros[1]++
+          } else {
+            newCons[1]++
+          }
+          if (review.proscons.performance === true) {
+            newPros[2]++
+          } else {
+            newCons[2]++
+          }
+          if (review.proscons.looks === true) {
+            newPros[3]++
+          } else {
+            newCons[3]++
+          }
+          if (review.proscons.durability === true) {
+            newPros[4]++
+          } else {
+            newCons[4]++
+          }
+        }
+
         const newRatingAverage = (newRatings.reduce(((acc, curr) => acc + curr), 0) / 5);
         console.log('newRatingAverage:', newRatingAverage, 'newRatings:', newRatings)
+        console.log('newPros:', newPros, 'newCons:', newCons)
         this.setState({
           reviews: reviews,
           ratingAverage: newRatingAverage,
-          ratings: newRatings
+          ratings: newRatings,
+          pros: newPros,
+          cons: newCons
         })
+      })
+      .catch(err => {
+        console.log('axios getreviews error:', err)
       })
   }
 
@@ -60,7 +97,13 @@ class App extends React.Component {
           <button value='4' onClick={(e) => this.handleNewProduct(e)}>Product 4</button>
           <button value='5' onClick={(e) => this.handleNewProduct(e)}>Product 5</button>
         </form><br></br>
-        <CenteredGrid ratings={this.state.ratings} ratingAverage={this.state.ratingAverage}/>
+        <CenteredGrid 
+          ratings={this.state.ratings} 
+          ratingAverage={this.state.ratingAverage}
+          reviews={this.state.reviews}
+          pros={this.state.pros} 
+          cons={this.state.cons}
+        />
         
       </div>
     )
