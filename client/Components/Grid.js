@@ -5,9 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Graph from './Graph.js';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar'
-
+import GraphPros from './GraphPros.js';
+import GraphCons from './GraphCons.js';
 
 const styles = theme => ({
   root: {
@@ -17,12 +16,12 @@ const styles = theme => ({
     padding: theme.spacing.unit * 1.25,
     textAlign: 'left',
     color: theme.palette.text.secondary,
+    height: 260
   },
 });
 
 const CenteredGrid = (props) => {
   const { classes } = props;
-
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
@@ -31,7 +30,11 @@ const CenteredGrid = (props) => {
             <Typography variant="h6">
               Ratings Summary
             </Typography>
-            <Graph />
+            <Graph 
+              ratings={props.ratings} 
+              ratingAverage={props.ratingAverage} 
+              reviews={props.reviews}
+            />
           </Paper>
         </Grid>
         <Grid item xs={4}>
@@ -39,15 +42,9 @@ const CenteredGrid = (props) => {
             <Typography variant="h6">
               Pros
             </Typography>
-            <Typography variant="p">
-              <ul>
-                <li>Cutting wood</li>
-                <li>Throwing</li>
-                <li>Battle</li>
-                <li>Grand standing</li>
-                <li>Scraping dead skin</li>
-            </ul>
-            </Typography>
+            <GraphPros
+              pros={props.pros} 
+            />
           </Paper>
         </Grid>
         <Grid item xs={4}>
@@ -55,15 +52,9 @@ const CenteredGrid = (props) => {
             <Typography variant="h6">
               Cons
             </Typography>
-            <Typography variant="p">
-              <ul>
-                <li>Baby shower gift</li>
-                <li>Gardening</li>
-                <li>Fightin zombies</li>
-                <li>Unbalanced</li>
-                <li>Not organic</li>
-            </ul>
-            </Typography>
+            <GraphCons
+              cons={props.cons} 
+            />
           </Paper>
         </Grid>
       </Grid>
