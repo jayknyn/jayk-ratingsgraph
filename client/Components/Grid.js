@@ -16,7 +16,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 1.25,
     textAlign: 'left',
     color: theme.palette.text.secondary,
-    height: 260
+    height: 300
   },
 });
 
