@@ -22,7 +22,6 @@ const styles = theme => ({
 
 const CenteredGrid = (props) => {
   const { classes } = props;
-
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
@@ -31,7 +30,7 @@ const CenteredGrid = (props) => {
             <Typography variant="h6">
               Ratings Summary
             </Typography>
-            <Graph />
+            <Graph ratings={props.ratings} ratingAverage={props.ratingAverage} />
           </Paper>
         </Grid>
         <Grid item xs={4}>
@@ -39,7 +38,7 @@ const CenteredGrid = (props) => {
             <Typography variant="h6">
               Pros
             </Typography>
-            <Typography variant="p">
+            <Typography>
               <ul>
                 <li>Cutting wood</li>
                 <li>Throwing</li>
@@ -55,7 +54,7 @@ const CenteredGrid = (props) => {
             <Typography variant="h6">
               Cons
             </Typography>
-            <Typography variant="p">
+            <Typography>
               <ul>
                 <li>Baby shower gift</li>
                 <li>Gardening</li>

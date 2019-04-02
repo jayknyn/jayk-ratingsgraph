@@ -5,37 +5,29 @@ import StarRatings from 'react-star-ratings'; //https://www.npmjs.com/package/re
 class Graph extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      rating: 3.5
-    }
   }
-  
-  changeRating(newRating) {
-    this.setState({
-      rating: newRating
-    })
-  }
-  
+ 
   render() {
+    console.log('in Graph this.props:', this.props)
     
     const data = [
-      {star: 1, ratings: 5},
-      {star: 2, ratings: 7},
-      {star: 3, ratings: 14},
-      {star: 4, ratings: 19},
-      {star: 5, ratings: 25}
+      {star: 1, ratings: this.props.ratings[0]},
+      {star: 2, ratings: this.props.ratings[1]},
+      {star: 3, ratings: this.props.ratings[2]},
+      {star: 4, ratings: this.props.ratings[3]},
+      {star: 5, ratings: this.props.ratings[4]}
     ];
 
     return (
       <div>
         <StarRatings
-          rating={this.state.rating}
+          rating={this.props.ratingAverage}
           starRatedColor="orange"
           numberOfStars={5}
           starDimension="20px"
           starSpacing="5px"
         />
-        <span>{this.state.rating}</span>
+        {this.props.ratingAverage}
         <VictoryChart
           theme={VictoryTheme.material}
           domainPadding={10} // padding from the axis
