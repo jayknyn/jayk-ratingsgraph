@@ -8,7 +8,8 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "nodemon ./server/server.js",
+    "dev-start": "nodemon ./server/server.js",
+    "start": "node ./server/server.js",
     "build": "webpack --watch -d",
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
