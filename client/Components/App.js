@@ -21,7 +21,7 @@ class App extends React.Component {
       productId: e.target.value
     }
     console.log('in App, data:', data)
-    axios.post('/api/getreviews', data)
+    axios.post('http://18.224.213.59/api/getreviews', data)
       .then(res => {
         console.log('axios getreviews success, res.data', res.data)
         const reviews = res.data;
