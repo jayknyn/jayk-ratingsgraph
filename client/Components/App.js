@@ -88,7 +88,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <img width="100%" src="https://photos.smugmug.com/photos/i-6gqm6Cv/0/0efb698d/XL/i-6gqm6Cv-XL.png"></img> */}
         <form>
           <button value='1' onClick={(e) => this.handleNewProduct(e)}>Product 1</button>
           <button value='2' onClick={(e) => this.handleNewProduct(e)}>Product 2</button>
