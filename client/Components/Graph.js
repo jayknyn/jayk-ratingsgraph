@@ -23,7 +23,7 @@ const Graph = (props) => {
         starSpacing="5px"
       />
       <Typography variant="subtitle1">
-        Avg. Rating: {props.ratingAverage} | Total Reviews: {props.reviews.length}
+        Avg. rating: {(props.ratingAverage).toFixed(1)} from {props.reviews.length} reviews 
       </Typography>
 
       <VictoryChart
