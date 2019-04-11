@@ -8,7 +8,7 @@ fs.readFile(file, (err, data) => {
   } else {
     const newData = JSON.parse(data);
     for(let i = 0; i < newData.length; i++) {
-      newData[i].productId = Math.floor(Math.random() * 5) + 1;
+      newData[i].productId = Math.floor(Math.random() * 100) + 1;
     }
     fs.writeFile(file, JSON.stringify(newData) ,(err, data) => {
       if(err) {

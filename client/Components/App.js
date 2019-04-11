@@ -17,16 +17,18 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount(e) {
-    e.preventDefault();
+  componentDidMount() {
+    console.log('in component did componentDidMount')
 
     window.addEventListener('productId', (e) => {
+      console.log('testing')
       this.setState({
         productId: e.detail
       }, () => {
         const data = {
           productId: this.state.productId
         }
+        console.log('window e.detail productId, data:', data)
         axios.post(`http://${deployedIP}/api/getreviews`, data)
           .then(res => {
             console.log('axios getreviews success, res.data', res.data)
@@ -161,13 +163,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <form>
-          <button value='1' onClick={(e) => this.handleNewProduct(e)}>Product 1</button>
-          <button value='2' onClick={(e) => this.handleNewProduct(e)}>Product 2</button>
-          <button value='3' onClick={(e) => this.handleNewProduct(e)}>Product 3</button>
-          <button value='4' onClick={(e) => this.handleNewProduct(e)}>Product 4</button>
-          <button value='5' onClick={(e) => this.handleNewProduct(e)}>Product 5</button>
-        </form><br></br> */}
         <CenteredGrid 
           ratings={this.state.ratings} 
           ratingAverage={this.state.ratingAverage}
