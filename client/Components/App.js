@@ -1,6 +1,7 @@
 import React from 'react';
 import CenteredGrid from './Grid.js';
 import axios from 'axios';
+import '../style.css';
 
 const deployedIP = '18.224.213.59';
 
@@ -162,7 +163,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="graph-component">
         <CenteredGrid 
           ratings={this.state.ratings} 
           ratingAverage={this.state.ratingAverage}
