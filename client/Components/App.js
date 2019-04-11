@@ -19,25 +19,24 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('in component did componentDidMount')
-
     window.addEventListener('productId', (e) => {
-      console.log('testing')
       this.setState({
         productId: e.detail
       }, () => {
         const data = {
           productId: this.state.productId
         }
-        console.log('window e.detail productId, data:', data)
+        // console.log('window e.detail productId, data:', data)
         axios.post(`http://${deployedIP}/api/getreviews`, data)
           .then(res => {
-            console.log('axios getreviews success, res.data', res.data)
+            // console.log('axios getreviews success, res.data', res.data)
             const reviews = res.data;
             const newRatings = [0, 0, 0, 0, 0];
             const newPros = [0, 0, 0, 0, 0];
             const newCons = [0, 0, 0, 0, 0];
+            const score = [];
             for (let review of reviews) {
+              score.push(review.score);
               if (review.score === 1) {
                 newRatings[0]++
               } else if (review.score === 2) {
@@ -77,7 +76,7 @@ class App extends React.Component {
                 newCons[4]--
               }
             }
-            const newRatingAverage = (newRatings.reduce(((acc, curr) => acc + curr), 0) / 5);
+            const newRatingAverage = (score.reduce(((acc, curr) => acc + curr), 0) / reviews.length);
             console.log('newRatingAverage:', newRatingAverage, 'newRatings:', newRatings)
             console.log('newPros:', newPros, 'newCons:', newCons)
             this.setState({
@@ -100,12 +99,14 @@ class App extends React.Component {
     console.log('in App, data:', data)
     axios.post(`http://${deployedIP}/api/getreviews`, data)
       .then(res => {
-        console.log('axios getreviews success, res.data', res.data)
+        // console.log('axios getreviews success, res.data', res.data)
         const reviews = res.data;
         const newRatings = [0, 0, 0, 0, 0];
         const newPros = [0, 0, 0, 0, 0];
         const newCons = [0, 0, 0, 0, 0];
+        const score = [];
         for (let review of reviews) {
+          score.push(review.score)
           if (review.score === 1) {
             newRatings[0]++
           } else if (review.score === 2) {
@@ -145,9 +146,9 @@ class App extends React.Component {
             newCons[4]--
           }
         }
-        const newRatingAverage = (newRatings.reduce(((acc, curr) => acc + curr), 0) / 5);
+        const newRatingAverage = (score.reduce(((acc, curr) => acc + curr), 0) / reviews.length);
         console.log('newRatingAverage:', newRatingAverage, 'newRatings:', newRatings)
-        console.log('newPros:', newPros, 'newCons:', newCons)
+        // console.log('newPros:', newPros, 'newCons:', newCons)
         this.setState({
           reviews: reviews,
           ratingAverage: newRatingAverage,
