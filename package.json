@@ -13,7 +13,8 @@
     "build": "webpack --watch -d",
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
-    "data": "node ./db/populate.js"
+    "data": "node ./db/populate.js",
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
@@ -21,6 +22,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "css-loader": "^2.1.1",
     "dotenv": "^7.0.0",
     "express": "^4.16.3",
     "file-system": "^2.2.2",
@@ -31,17 +33,20 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-star-ratings": "^2.3.0",
+    "style-loader": "^0.23.1",
     "victory": "^32.1.0",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "style-loader": "^0.23.1",
-    "css-loader": "^2.1.1"
+    "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.1",
     "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.5",
-    "pm2": "^3.4.1"
+    "jest": "^24.7.1",
+    "pm2": "^3.4.1",
+    "superagent": "^5.0.2",
+    "supertest": "^4.0.2"
   }
 }
