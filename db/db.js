@@ -56,7 +56,21 @@ const getReviewsById = (selectedId, cb) => {
         console.log('db: find success');
         cb(null, results);
       }
-    });
+    })
+    .explain("executionStats");
 }
 
-module.exports = {postReview, getReviewsById}
+const getAllReviews = (cb) => {
+  Graph.find()
+    .exec((err, results) => {
+      if (err) {
+        console.log('db get all: find error');
+        cb(err, null);
+      } else {
+        console.log('db get all: find success');
+        cb(null, results);
+      }
+    })
+}
+
+module.exports = {postReview, getReviewsById, getAllReviews}

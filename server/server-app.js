@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('../db/db.js');
 const app = express();
+const axios = require('axios');
 app.use(express.static('dist'));
 app.use(bodyParser.json({urlEncoded: false}));
 app.use(cors());
@@ -39,8 +40,27 @@ app.post('/api/reviews', (req, res) => {
   }
 });
 
-app.get('/', (req, res) => {
-  res.status(200).send('Hello for the Jest Test')
+app.get('/api/jbsreviews', (req, res) => {
+  axios.get('http://18.219.116.84/api/reviews/dbmerge')
+    .then(reviews => {
+      console.log('jbs reviews: ')
+      res.send('got the reviews')
+    })
+    .catch(err => {
+      console.log('jbs reviews axios get error')
+      res.send('didnt get the reviews')
+    })
+})
+
+app.get('/api/allreviews', (req, res) => {
+  db.getAllReviews((err, data) => {
+    if (err) {
+      console.log('app.get all reviews error')
+    } else {
+      console.log('app.get all reviews success')
+      res.send(data)
+    }
+  })
 })
 
 module.exports = app;
