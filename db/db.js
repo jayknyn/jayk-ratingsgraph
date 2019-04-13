@@ -57,7 +57,6 @@ const getReviewsById = (selectedId, cb) => {
         cb(null, results);
       }
     })
-    .explain("executionStats");
 }
 
 const getAllReviews = (cb) => {

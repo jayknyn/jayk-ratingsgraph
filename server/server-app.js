@@ -2,13 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('../db/db.js');
+const fs = require('file-system');
+const path = require('path');
 const app = express();
 const axios = require('axios');
 app.use(express.static('dist'));
 app.use(bodyParser.json({urlEncoded: false}));
 app.use(cors());
 
-
+// For client 
 app.post('/api/getreviews', (req, res) => {
   console.log('route getreviews started');
   console.log('req.body.productId:', req.body.productId);
@@ -23,7 +25,7 @@ app.post('/api/getreviews', (req, res) => {
   });
 });
 
-// For db seeding
+// For db seeding original
 app.post('/api/reviews', (req, res) => {
   console.log('app.post started');
   for (let x = 0; x < req.body.length; x++) {
@@ -40,18 +42,27 @@ app.post('/api/reviews', (req, res) => {
   }
 });
 
+// For db seeding with JB's data
 app.get('/api/jbsreviews', (req, res) => {
-  axios.get('http://18.219.116.84/api/reviews/dbmerge')
-    .then(reviews => {
-      console.log('jbs reviews: ')
-      res.send('got the reviews')
-    })
-    .catch(err => {
-      console.log('jbs reviews axios get error')
-      res.send('didnt get the reviews')
-    })
+  fs.readFile(path.join(__dirname, "../db/jbdata.json"), (error, data) => {
+    if (error) {
+      console.error(error)
+    } else {
+      data = JSON.parse(data);
+      data.map((review, index) => {
+        db.postReview(review, (err, result) => {
+          if (err) {
+            console.error('jb data write error:', err);
+          } else {
+            console.log("jb data write success", index);
+          }
+        })
+      })
+    }
+  })
 })
 
+// For db merging
 app.get('/api/allreviews', (req, res) => {
   db.getAllReviews((err, data) => {
     if (err) {
