@@ -1,13 +1,4 @@
-# Project Name
-
-> Jay's Ratings Graph for Axe Center
-
-## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+# Jay's Ratings Graph for Axe Center
 
 ## Table of Contents
 
